@@ -12,7 +12,7 @@ class RegtestUtils {
     this._APIPASS = (_opts || {}).APIPASS || process.env.APIPASS || 'satoshi';
     // regtest network parameters
     this.network = {
-      messagePrefix: '\x18Bitcoin Signed Message:\n',
+      messagePrefix: '\x18Tapyrus Signed Message:\n',
       bech32: 'bcrt',
       bip32: {
         public: 0x043587cf,
@@ -20,6 +20,8 @@ class RegtestUtils {
       },
       pubKeyHash: 0x6f,
       scriptHash: 0xc4,
+      coloredPubKeyHash: 0x70,
+      coloredScriptHash: 0xc5,
       wif: 0xef,
     };
   }

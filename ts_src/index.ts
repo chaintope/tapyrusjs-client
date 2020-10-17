@@ -8,6 +8,8 @@ interface Network {
   bip32: Bip32;
   pubKeyHash: number;
   scriptHash: number;
+  coloredPubKeyHash: number;
+  coloredScriptHash: number;
   wif: number;
 }
 
@@ -75,7 +77,7 @@ export class RegtestUtils {
     this._APIPASS = (_opts || {}).APIPASS || process.env.APIPASS || 'satoshi';
     // regtest network parameters
     this.network = {
-      messagePrefix: '\x18Bitcoin Signed Message:\n',
+      messagePrefix: '\x18Tapyrus Signed Message:\n',
       bech32: 'bcrt',
       bip32: {
         public: 0x043587cf,
@@ -83,6 +85,8 @@ export class RegtestUtils {
       },
       pubKeyHash: 0x6f,
       scriptHash: 0xc4,
+      coloredPubKeyHash: 0x70,
+      coloredScriptHash: 0xc5,
       wif: 0xef,
     };
   }
