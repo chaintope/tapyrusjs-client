@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Pull docker image
-    - run: docker pull junderw/bitcoinjs-regtest-server && docker run -d -p 127.0.0.1:8080:8080 junderw/bitcoinjs-regtest-server && docker ps -a;
+      run: docker pull junderw/bitcoinjs-regtest-server && docker run -d -p 127.0.0.1:8080:8080 junderw/bitcoinjs-regtest-server && docker ps -a
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
