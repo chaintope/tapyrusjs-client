@@ -1,4 +1,4 @@
-# Bitcoin Regtest Client
+# Tapyrus Client
 
 A library for managing regtest server. (Good for integration tests)
 
@@ -8,10 +8,10 @@ Default URL is `http://127.0.0.1:8080/1`, and the recommended way to set up a se
 is to run a docker container locally.
 
 You can override the URL with `APIURL` environment variable or by using the
-optional second arg `new RegtestUtils(bitcoin, { APIURL: 'xxx' })` at runtime.
+optional second arg `new RegtestUtils({ APIURL: 'xxx' })` at runtime.
 
 You can also override the API password (set on the server side) with `APIPASS`
-env variable, or `new RegtestUtils(bitcoin, { APIURL: 'xxx', APIPASS: 'yyy' })`
+env variable, or `new RegtestUtils({ APIURL: 'xxx', APIPASS: 'yyy' })`
 
 The optional second arg can have either, both, or none of the two overrides.
 
@@ -20,8 +20,8 @@ The optional second arg can have either, both, or none of the two overrides.
 Check the docker folder on [regtest-server](https://github.com/bitcoinjs/regtest-server)
 to run a server locally.
 
-Also, see bitcoinjs-lib travis config to see how to use the docker image with CI.    
-[Check the .travis.yml here.](https://github.com/bitcoinjs/bitcoinjs-lib/blob/b3def6b4006683190657ef40efa7a8bcbb78b5cd/.travis.yml#L3-L10)
+Also, see tapyrusjs-lib travis config to see how to use the docker image with CI.
+[Check the .travis.yml here.](https://github.com/chaintope/tapyrusjs-lib/blob/b3def6b4006683190657ef40efa7a8bcbb78b5cd/.travis.yml#L3-L10)
 
 ## TypeScript support
 
@@ -33,23 +33,21 @@ Pull requests must all contain TS, JS, and types where needed.
 ```js
 // inside an async function to use await
 
-// bitcoinjs-lib must be the >=5.0.6 to use.
-// For bitcoinjs-lib >=4.0.3, use version v0.0.8 of regtest-client
-const bitcoin = require('bitcoinjs-lib')
-const { RegtestUtils } = require('regtest-client')
-const regtestUtils = new RegtestUtils(bitcoin)
+const tapyrus = require('tapyrusjs-lib')
+const { RegtestUtils } = require('tapyrusjs-client')
+const regtestUtils = new RegtestUtils()
 
 const network = regtestUtils.network // regtest network params
 
-const keyPair = bitcoin.ECPair.makeRandom({ network })
-const p2pkh = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey, network })
+const keyPair = tapyrus.ECPair.makeRandom({ network })
+const p2pkh = tapyrus.payments.p2pkh({ pubkey: keyPair.publicKey, network })
 
 // Tell the server to send you coins (satoshis)
 // Can pass address
 const unspent = await regtestUtils.faucet(p2pkh.address, 2e4)
 
 // Tell the server to send you coins (satoshis)
-// Can pass Buffer of the scriptPubkey (in case address can not be parsed by bitcoinjs-lib)
+// Can pass Buffer of the scriptPubkey (in case address can not be parsed by tapyrusjs-lib)
 // Non-standard outputs will be rejected, though.
 const unspentComplex = await regtestUtils.faucetComplex(p2pkh.output, 1e4)
 
@@ -64,7 +62,7 @@ const fetchedTx = await regtestUtils.fetch(unspent.txId)
 const results = await regtestUtils.mine(6)
 
 // Send our own transaction
-const txb = new bitcoin.TransactionBuilder(network)
+const txb = new tapyrus.TransactionBuilder(network)
 txb.addInput(unspent.txId, unspent.vout)
 txb.addInput(unspentComplex.txId, unspentComplex.vout)
 // regtestUtils.RANDOM_ADDRESS is created on first load.

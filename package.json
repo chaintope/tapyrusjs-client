@@ -1,6 +1,6 @@
 {
-  "name": "tapyrusjs-regtest-client",
-  "version": "0.2.0",
+  "name": "tapyrusjs-client",
+  "version": "0.1.0",
   "description": "A client for dev tapyrus usage. Requires dev-server from tapyrusjs github.",
   "main": "src/index.js",
   "types": "types/index.d.ts",
@@ -26,12 +26,13 @@
     "unit": "npm run build && npm run nobuild:unit"
   },
   "keywords": [
-    "bitcoin",
-    "regtest",
+    "tapyrus",
     "client"
   ],
   "author": "Hajime Yamaguchi <h_yamaguchi@chaintope.com>",
-  "contributors": ["Jonathan Underwood"],
+  "contributors": [
+    "Jonathan Underwood"
+  ],
   "license": "MIT",
   "dependencies": {
     "bs58check": "^2.1.2",
