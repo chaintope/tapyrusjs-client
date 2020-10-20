@@ -1,6 +1,6 @@
 const { describe, it } = require('mocha')
 const assert = require('assert')
-const bitcoin = require('tapyrusjs-lib')
+const tapyrus = require('tapyrusjs-lib');
 const { RegtestUtils } = require('..')
 const regtestUtils = new RegtestUtils()
 const { network } = regtestUtils
@@ -23,8 +23,8 @@ describe('regtest utils', () => {
   })
 
   it('should get faucet, broadcast, verify', async () => {
-    const keyPair = bitcoin.ECPair.makeRandom({ network })
-    const p2pkh = bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey, network })
+    const keyPair = tapyrus.ECPair.makeRandom({ network });
+    const p2pkh = tapyrus.payments.p2pkh({ pubkey: keyPair.publicKey, network })
 
     const unspent = await regtestUtils.faucet(p2pkh.address, 2e4)
 
@@ -50,7 +50,7 @@ describe('regtest utils', () => {
       'unspents must be equal'
     )
 
-    const txb = new bitcoin.TransactionBuilder(network)
+    const txb = new tapyrus.TransactionBuilder(network);
     txb.addInput(unspent.txId, unspent.vout)
     txb.addInput(unspentComplex.txId, unspentComplex.vout)
     txb.addOutput(regtestUtils.RANDOM_ADDRESS, 1e4)
@@ -67,7 +67,7 @@ describe('regtest utils', () => {
     })
     const tx = txb.build()
 
-    // build and broadcast to the Bitcoin RegTest network
+    // build and broadcast to the Tapyrus Core Network
     await regtestUtils.broadcast(tx.toHex())
 
     await regtestUtils.verify({

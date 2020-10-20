@@ -1,5 +1,6 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
+exports.RegtestUtils = void 0;
 const assert = require('assert');
 const rng = require('randombytes');
 const bs58check = require('bs58check');
