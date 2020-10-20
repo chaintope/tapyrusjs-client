@@ -1,6 +1,6 @@
 const { describe, it } = require('mocha')
 const assert = require('assert')
-const bitcoin = require('bitcoinjs-lib')
+const bitcoin = require('tapyrusjs-lib')
 const { RegtestUtils } = require('..')
 const regtestUtils = new RegtestUtils()
 const { network } = regtestUtils
