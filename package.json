@@ -1,7 +1,7 @@
 {
   "name": "tapyrusjs-regtest-client",
   "version": "0.2.0",
-  "description": "A client for regtest bitcoin usage. Requires regtest-server from bitcoinjs github.",
+  "description": "A client for dev tapyrus usage. Requires dev-server from tapyrusjs github.",
   "main": "src/index.js",
   "types": "types/index.d.ts",
   "files": [
