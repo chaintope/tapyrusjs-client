@@ -49,11 +49,13 @@ interface Transaction {
 interface RegUtilOpts {
     APIPASS?: string;
     APIURL?: string;
+    PRIVATE_KEY?: string;
 }
 export declare class RegtestUtils {
     network: Network;
     private _APIURL;
     private _APIPASS;
+    private _PRIVATE_KEY;
     constructor(_opts?: RegUtilOpts);
     get RANDOM_ADDRESS(): string;
     dhttp(options: Request): Promise<DhttpResponse>;
