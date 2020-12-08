@@ -11,6 +11,8 @@ class RegtestUtils {
     this._APIURL =
       (_opts || {}).APIURL || process.env.APIURL || 'http://127.0.0.1:8080/1';
     this._APIPASS = (_opts || {}).APIPASS || process.env.APIPASS || 'satoshi';
+    this._PRIVATE_KEY =
+      (_opts || {}).PRIVATE_KEY || process.env.PRIVATE_KEY || '';
     // regtest network parameters
     this.network = {
       messagePrefix: '\x18Tapyrus Signed Message:\n',
@@ -51,7 +53,7 @@ class RegtestUtils {
   async mine(count) {
     return this.dhttp({
       method: 'POST',
-      url: `${this._APIURL}/r/generate?count=${count}&key=${this._APIPASS}`,
+      url: `${this._APIURL}/r/generate?count=${count}&key=${this._APIPASS}&priv=${this._PRIVATE_KEY}`,
     });
   }
   async height() {
